@@ -1,0 +1,4 @@
+if spindles[0].state == "forward"
+    M4
+else
+    M3

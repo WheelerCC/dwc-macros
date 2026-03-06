@@ -1,0 +1,4 @@
+var feedrate = 4122        
+
+G53 G1 X{(global.X_MAX-global.X_MIN)/2} Y{global.Y_MAX} F{var.feedrate}
+G53 G1 X{(global.X_MAX-global.X_MIN)/2} Y{global.Y_MIN} F{var.feedrate}

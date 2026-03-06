@@ -1,0 +1,1 @@
+G53 G0 X{(global.X_MAX-global.X_MIN)/2} Y{global.Y_MAX}
