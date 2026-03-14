@@ -24,10 +24,10 @@ if result != 0
 G0 ${axis}${retract_sign}1 ; retract a bit
 G90 ; back to absolute mode
 
-if exists(param.S)
-    ; caller will handle positioning
-else
-    G53 G0 Z{global.Z_MAX} ; raise Z clear
-    G91 ; relative mode
-    G0 ${axis}{${probing_sign}1${offset_sign}var.probeOffset} ; move to edge + probe offset
-    G90 ; back to absolute mode
+## if exists(param.S)
+; caller will handle positioning
+## else
+##     G53 G0 Z{global.Z_MAX} ; raise Z clear
+##     G91 ; relative mode
+##     G0 ${axis}{${probing_sign}1${offset_sign}var.probeOffset} ; move to edge + probe offset
+##     G90 ; back to absolute mode

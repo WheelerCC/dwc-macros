@@ -18,10 +18,4 @@ if result != 0
 G0 Y-1                                  ; retract a bit
 G90                                     ; back to absolute mode
 
-if exists(param.S)
-    ; caller will handle positioning
-else
-    G53 G0 Z{global.Z_MAX}              ; raise Z clear
-    G91                                 ; relative mode
-    G0 Y{1+var.probeOffset}             ; move to edge + probe offset
-    G90                                 ; back to absolute mode
+; caller will handle positioning
