@@ -1,3 +1,4 @@
+./venv/bin/python generate.py
 rm allfiles.zip
 zip -r allfiles.zip * -x \
  "venv/*" \
