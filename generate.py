@@ -6,7 +6,7 @@ from pathlib import Path
 from mako.template import Template
 
 
-EDGES = ["left", "right", "front", "back"]
+FACES = ["left", "right", "front", "back", "top"]
 
 TEMPLATE_DIR = Path(__file__).parent / "xyz-probe"
 TEMPLATE_FILE = TEMPLATE_DIR / "locate-edge.g.mako"
@@ -37,10 +37,10 @@ def align_comments(text: str, col: int = 40) -> str:
 def main():
     template = Template(filename=str(TEMPLATE_FILE))
 
-    for edge in EDGES:
-        output = template.render(edge=edge)
+    for face in FACES:
+        output = template.render(face=face)
         output = align_comments(str(output))
-        out_path = TEMPLATE_DIR / f"locate-{edge}-edge.g"
+        out_path = TEMPLATE_DIR / f"locate-{face}-face.g"
         out_path.write_text(output)
         print(f"Generated {out_path}")
 

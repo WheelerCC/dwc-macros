@@ -1,4 +1,4 @@
-; locate-back-edge.g — find back edge of workpiece
+; locate-top-face.g — find top face of workpiece
 
 var probeOffset = 0.891
 var coarseMove = 5
@@ -10,11 +10,11 @@ if exists(param.Y)
 G91                                     ; relative mode
 G38.2 K1 Y{-var.coarseMove} F200        ; coarse probe
 if result != 0
-    abort "Didn't find an edge (fast)"
+    abort "Didn't find a face (fast)"
 G0 Y1                                   ; retract a bit
 G38.2 K1 Y{-var.fineMove} F50           ; fine probe
 if result != 0
-    abort "Didn't find an edge (slow)"
+    abort "Didn't find an face (slow)"
 G0 Y1                                   ; retract a bit
 G90                                     ; back to absolute mode
 

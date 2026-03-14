@@ -1,9 +1,9 @@
-; locate-${edge}-edge.g — find ${edge} edge of workpiece
+; locate-${face}-face.g — find ${face} face of workpiece
 <%
-    axis         = "X" if edge in ("left", "right") else "Y"
-    probing_sign = ""  if edge in ("left", "front") else "-"
-    retract_sign = "-" if edge in ("left", "front") else ""
-    offset_sign  = "+" if edge in ("left", "front") else "-"
+    axis         = "X" if face in ("left", "right") else "Y"
+    probing_sign = ""  if face in ("left", "front") else "-"
+    retract_sign = "-" if face in ("left", "front") else ""
+    offset_sign  = "+" if face in ("left", "front") else "-"
 %>\
 
 var probeOffset = 0.891
@@ -16,11 +16,11 @@ if exists(param.Y)
 G91 ; relative mode
 G38.2 K1 ${axis}{${probing_sign}var.coarseMove} F200 ; coarse probe
 if result != 0
-    abort "Didn't find an edge (fast)"
+    abort "Didn't find a face (fast)"
 G0 ${axis}${retract_sign}1 ; retract a bit
 G38.2 K1 ${axis}{${probing_sign}var.fineMove} F50 ; fine probe
 if result != 0
-    abort "Didn't find an edge (slow)"
+    abort "Didn't find an face (slow)"
 G0 ${axis}${retract_sign}1 ; retract a bit
 G90 ; back to absolute mode
 
@@ -29,5 +29,5 @@ G90 ; back to absolute mode
 ## else
 ##     G53 G0 Z{global.Z_MAX} ; raise Z clear
 ##     G91 ; relative mode
-##     G0 ${axis}{${probing_sign}1${offset_sign}var.probeOffset} ; move to edge + probe offset
+##     G0 ${axis}{${probing_sign}1${offset_sign}var.probeOffset} ; move to face + probe offset
 ##     G90 ; back to absolute mode
