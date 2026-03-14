@@ -6,4 +6,5 @@ zip -r allfiles.zip * -x \
  "zip.sh" \
  "requirements.txt" \
  "README.md" \
+ "generate.py" \
  "*.mako" 
