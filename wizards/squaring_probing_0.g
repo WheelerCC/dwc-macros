@@ -56,9 +56,9 @@ G21                                     ; mm units
 ; ============================================================
 ; B0 — probe back face at A0
 ; ============================================================
-G0 Z{param.S}                           ; rise to safe Z
-G0 X{param.A} Y{param.B}               ; move to A0 XY
-G0 Z{param.Z}                           ; descend to probing Z
+G53 G0 Z{param.S}                       ; rise to safe Z (machine coords)
+G53 G0 X{param.A} Y{param.B}           ; move to A0 XY (machine coords)
+G53 G0 Z{param.Z}                       ; descend to probing Z (machine coords)
 M98 P"xyz-probe/locate-back-face.g"    ; probe back face
 set global.b0_x = move.axes[0].machinePosition
 set global.b0_y = move.axes[1].machinePosition
@@ -66,9 +66,9 @@ set global.b0_y = move.axes[1].machinePosition
 ; ============================================================
 ; B1 — probe back face at A1
 ; ============================================================
-G0 Z{param.S}                           ; rise to safe Z
-G0 X{param.C} Y{param.D}               ; move to A1 XY
-G0 Z{param.Z}                           ; descend to probing Z
+G53 G0 Z{param.S}                       ; rise to safe Z (machine coords)
+G53 G0 X{param.C} Y{param.D}           ; move to A1 XY (machine coords)
+G53 G0 Z{param.Z}                       ; descend to probing Z (machine coords)
 M98 P"xyz-probe/locate-back-face.g"    ; probe back face
 set global.b1_x = move.axes[0].machinePosition
 set global.b1_y = move.axes[1].machinePosition
@@ -76,9 +76,9 @@ set global.b1_y = move.axes[1].machinePosition
 ; ============================================================
 ; B2 — probe right face at A2
 ; ============================================================
-G0 Z{param.S}                           ; rise to safe Z
-G0 X{param.E} Y{param.F}               ; move to A2 XY
-G0 Z{param.Z}                           ; descend to probing Z
+G53 G0 Z{param.S}                       ; rise to safe Z (machine coords)
+G53 G0 X{param.E} Y{param.F}           ; move to A2 XY (machine coords)
+G53 G0 Z{param.Z}                       ; descend to probing Z (machine coords)
 M98 P"xyz-probe/locate-right-face.g"   ; probe right face
 set global.b2_x = move.axes[0].machinePosition
 set global.b2_y = move.axes[1].machinePosition
@@ -86,9 +86,9 @@ set global.b2_y = move.axes[1].machinePosition
 ; ============================================================
 ; B3 — probe right face at A3
 ; ============================================================
-G0 Z{param.S}                           ; rise to safe Z
-G0 X{param.H} Y{param.I}               ; move to A3 XY
-G0 Z{param.Z}                           ; descend to probing Z
+G53 G0 Z{param.S}                       ; rise to safe Z (machine coords)
+G53 G0 X{param.H} Y{param.I}           ; move to A3 XY (machine coords)
+G53 G0 Z{param.Z}                       ; descend to probing Z (machine coords)
 M98 P"xyz-probe/locate-right-face.g"   ; probe right face
 set global.b3_x = move.axes[0].machinePosition
 set global.b3_y = move.axes[1].machinePosition
@@ -96,8 +96,8 @@ set global.b3_y = move.axes[1].machinePosition
 ; ============================================================
 ; Return to safe Z then back to A0
 ; ============================================================
-G0 Z{param.S}                           ; rise to safe Z
-G0 X{param.A} Y{param.B}               ; return to A0 XY
+G53 G0 Z{param.S}                       ; rise to safe Z (machine coords)
+G53 G0 X{param.A} Y{param.B}           ; return to A0 XY (machine coords)
 
 echo "squaring_probing_0 complete"
 echo "B0: (" ^ global.b0_x ^ ", " ^ global.b0_y ^ ")"
