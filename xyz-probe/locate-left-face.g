@@ -24,6 +24,7 @@ while iterations < var.fineProbeCount
         abort "Didn't find a face (fine probe)"
     G90                                 ; back to absolute mode
     set var.readings[iterations] = move.axes[0].machinePosition
+    echo "Probe " ^ iterations ^ ": " ^ var.readings[iterations]
     G91                                 ; relative mode
     G0 X-0.7                            ; retract between fine probes
     G90                                 ; back to absolute mode
