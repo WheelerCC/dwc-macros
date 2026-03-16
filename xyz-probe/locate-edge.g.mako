@@ -9,7 +9,7 @@
 var probeOffset = 0.891
 var coarseMove = 20
 var fineMove = 1.5
-var fineProbeCount = 3
+var fineProbeCount = 5
 var probedSum = 0.0
 
 if exists(param.Y)
@@ -19,19 +19,19 @@ G91 ; relative mode
 G38.2 K1 ${axis}{${probing_sign}var.coarseMove} F200 ; coarse probe
 if result != 0
     abort "Didn't find a face (fast)"
-G0 ${axis}${retract_sign}1 ; retract a bit
+G0 ${axis}${retract_sign}0.7 ; retract a bit
 G90 ; back to absolute mode
 
 ; --- repeated fine probes ---
 while iterations < var.fineProbeCount
     G91 ; relative mode
-    G38.2 K1 ${axis}{${probing_sign}var.fineMove} F50 ; fine probe
+    G38.2 K1 ${axis}{${probing_sign}var.fineMove} F30 ; fine probe
     if result != 0
         abort "Didn't find a face (fine probe)"
     G90 ; back to absolute mode
-    set var.probedSum = var.probedSum + move.axes[{"0" if axis == "X" else "1"}].machinePosition
+    set var.probedSum = var.probedSum + move.axes[${"0" if axis == "X" else "1"}].machinePosition
     G91 ; relative mode
-    G0 ${axis}${retract_sign}1 ; retract between fine probes
+    G0 ${axis}${retract_sign}0.7 ; retract between fine probes
     G90 ; back to absolute mode
 
 ; --- move to averaged position ---
