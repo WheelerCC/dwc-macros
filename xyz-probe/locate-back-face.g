@@ -23,6 +23,7 @@ while iterations < var.fineProbeCount
     if result != 0
         abort "Didn't find a face (fine probe)"
     G90                                 ; back to absolute mode
+    M400                                ; wait for move to complete
     set var.readings[iterations] = move.axes[1].machinePosition
     echo "Probe " ^ iterations ^ ": " ^ var.readings[iterations]
     G91                                 ; relative mode
@@ -32,8 +33,15 @@ while iterations < var.fineProbeCount
 ; --- average after dropping highest and lowest ---
 var trimmedSum = (var.readings[0] + var.readings[1] + var.readings[2] + var.readings[3] + var.readings[4]) - min(var.readings) - max(var.readings)
 var trimmedAvg = var.trimmedSum / (var.fineProbeCount - 2)
+echo "Trimmed average: " ^ var.trimmedAvg
+
+; --- store result in global for caller to read ---
+if !exists(global.probeResult)
+    global probeResult = 0.0
+set global.probeResult = var.trimmedAvg
 
 ; --- move to averaged position ---
 G53 G0 Y{var.trimmedAvg}
+M400                                    ; wait for move to complete
 
 ; caller will handle positioning
