@@ -1,7 +1,7 @@
 ; locate-right-face.g — find right face of workpiece
 
 var probeOffset = 0.891
-var coarseMove = 5
+var coarseMove = 20
 var fineMove = 1.5
 
 if exists(param.Y)
