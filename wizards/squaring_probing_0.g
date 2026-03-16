@@ -32,15 +32,23 @@ if !exists(param.S)
 if !exists(param.Z)
     abort "squaring_probing_0: missing param.Z (probing Z)"
 
-; --- Declare result globals ---
-global b0_x = 0.0
-global b0_y = 0.0
-global b1_x = 0.0
-global b1_y = 0.0
-global b2_x = 0.0
-global b2_y = 0.0
-global b3_x = 0.0
-global b3_y = 0.0
+; --- Declare result globals (only on first run) ---
+if !exists(global.b0_x)
+    global b0_x = 0.0
+if !exists(global.b0_y)
+    global b0_y = 0.0
+if !exists(global.b1_x)
+    global b1_x = 0.0
+if !exists(global.b1_y)
+    global b1_y = 0.0
+if !exists(global.b2_x)
+    global b2_x = 0.0
+if !exists(global.b2_y)
+    global b2_y = 0.0
+if !exists(global.b3_x)
+    global b3_x = 0.0
+if !exists(global.b3_y)
+    global b3_y = 0.0
 
 G90                                     ; absolute mode
 G21                                     ; mm units
